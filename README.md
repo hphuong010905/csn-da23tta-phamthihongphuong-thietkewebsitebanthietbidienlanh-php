@@ -9,20 +9,20 @@
 **Đề tài**: Thiết kế website bán thiết bị điện lạnh
 
 **Sinh viên thực hiện**:
-- **Họ và tên**: [Họ tên sinh viên]
-- **MSSV**: [Mã số sinh viên]
+- **Họ và tên**: Phạm Thị Hồng Phương
+- **MSSV**: 110123040
 - **Lớp**: DA23TTA
-- **Khoa**: Kỹ thuật và công nghệ
-- **Trường**: Đại học Trà Vinh
+- **Khoa**: Công nghệ thông tin
+- **Trường**: Kỹ thuật và Công nghệ
 
-**Giảng viên hướng dẫn**: [Tên giảng viên]
+**Giảng viên hướng dẫn**: ThS Nguyễn Hoàng Duy Thiện
 
 ---
 
 ## 📞 Thông tin liên hệ
 
-- **Email**: hphuong010905@st.tvu.edu.vn
-- **Phone**: [Số điện thoại]
+- **Email**: phuongdaudh2023@gmail.com
+- **Phone**: 0393710219
 - **GitHub**: https://github.com/hphuong010905
 - **Repository**: https://github.com/hphuong010905/csn-da23tta-thietkewebditebanthietbidienlanh-php.git
 
@@ -40,11 +40,10 @@ Website bán thiết bị điện lạnh là một hệ thống thương mại �
 - 📦 Theo dõi đơn hàng
 
 ### Chức năng quản trị viên:
-- 📊 Quản lý sản phẩm (CRUD)
+- 📊 Quản lý sản phẩm
 - 📑 Quản lý danh mục
 - 👥 Quản lý khách hàng
 - 🛍️ Quản lý đơn hàng
-- 📈 Thống kê báo cáo
 
 ---
 
@@ -52,7 +51,7 @@ Website bán thiết bị điện lạnh là một hệ thống thương mại �
 
 ### Backend:
 - **Ngôn ngữ**: PHP 7.4+
-- **Database**: MySQL/MariaDB
+- **Database**: MySQL
 - **Session**: PHP Session
 
 ### Frontend:
@@ -62,7 +61,7 @@ Website bán thiết bị điện lạnh là một hệ thống thương mại �
 - **Font Awesome 6.7.2**
 
 ### Server:
-- **Apache** (Laragon/XAMPP)
+- **Apache** (Laragon)
 
 ---
 
@@ -139,8 +138,8 @@ http://localhost/CSN/src/Frontend/views/index.php
 ## 👤 Tài khoản demo
 
 ### Admin:
-- Tài khoản: `admin`
-- Mật khẩu: `admin123`
+- Tài khoản: `PHUONG0109`
+- Mật khẩu: `phuong0109`
 
 ### Khách hàng:
 - Đăng ký mới tại trang chủ
@@ -195,7 +194,7 @@ http://localhost/CSN/src/Frontend/views/index.php
 - ✅ Quản lý danh mục (CRUD)
 - ✅ Quản lý khách hàng
 - ✅ Quản lý đơn hàng
-- ✅ Dashboard thống kê
+
 
 ---
 
@@ -229,7 +228,7 @@ https://github.com/hphuong010905/csn-da23tta-thietkewebditebanthietbidienlanh-ph
 ## 📄 License
 
 <<<<<<< HEAD
-Dự án này được phát triển cho mục đích học tập tại Đại học Trà Vinh.
+Dự án này được phát triển cho mục đích học tập tại Trường Kỹ thuật và Công nghệ - Trường Đại học Trà Vinh.
 =======
 Dự án này được phát triển cho mục đích học tập.
 >>>>>>> 82231b6ba9aefb01f694c54632b0992bae58c003
@@ -238,11 +237,11 @@ Dự án này được phát triển cho mục đích học tập.
 
 ## 🙏 Lời cảm ơn
 
-- Giảng viên hướng dẫn: [Tên giảng viên]
+- Giảng viên hướng dẫn: ThS Nguyễn Hoàng Duy Thiện
 <<<<<<< HEAD
-- Khoa Công nghệ Thông tin - Trường Đại học Trà Vinh
+- Khoa Công nghệ Thông tin - Trường Kỹ thuật và Công nghệ - Trường Đại học Trà Vinh
 =======
-- Khoa kỹ thuật và công nghệ
+- Trường Kỹ thuật và Công nghệ
 >>>>>>> 82231b6ba9aefb01f694c54632b0992bae58c003
 - Các bạn trong lớp DA23TTA
 
