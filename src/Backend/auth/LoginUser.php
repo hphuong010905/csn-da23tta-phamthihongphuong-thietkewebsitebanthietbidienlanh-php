@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php'; 
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../config/ConnectDB.php'; 
 
 if (isset($_POST['btn-login'])) {
     $input_user = $_POST['username']; // Có thể là Email (Khách) hoặc Mã Admin
@@ -19,7 +19,7 @@ if (isset($_POST['btn-login'])) {
             $_SESSION['admin_id'] = $row_ad['MAQT'];
             $_SESSION['admin_name'] = $row_ad['TENQT'];
             
-            echo "<script>alert('Xin chào Admin!'); window.location.href='QTHT.php';</script>";
+            echo "<script>alert('Xin chào Admin!'); window.location.href='../../Frontend/views/QTHT.php';</script>";
             exit();
         }
     }
@@ -37,7 +37,7 @@ if (isset($_POST['btn-login'])) {
             $_SESSION['kh_email'] = $row_user['EMAIL'];
             $_SESSION['kh_name'] = $row_user['TENKH'];
             
-            echo "<script>alert('Đăng nhập thành công!'); window.location.href='index.php';</script>";
+            echo "<script>alert('Đăng nhập thành công!'); window.location.href='../../Frontend/views/index.php';</script>";
             exit();
         } else {
             echo "<script>alert('Sai mật khẩu!');</script>";

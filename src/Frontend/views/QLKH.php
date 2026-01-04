@@ -1,8 +1,8 @@
 <?php
 // 1. Cấu hình & Bảo mật
-require_once 'cauhinhSS.php';
-require_once 'admin_check.php'; 
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/auth/admin_check.php'; 
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // ---------------------------------------------------------
 // LOGIC 1: XỬ LÝ XÓA KHÁCH HÀNG (Ngay tại file này)
@@ -80,7 +80,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="ms-auto d-flex text-white align-items-center mt-2 mt-lg-0">
                 <span class="me-3">Xin chào, <b class="text-warning"><?php echo $_SESSION['admin_id']; ?></b></span>
-                <a href="LoginAD.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
+                <a href="../../Backend/auth/LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
                     <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                 </a>
             </div>
@@ -158,6 +158,101 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
                 </div>
             </div>
         </div>
+
+        <!-- Consultation Requests Section -->
+        <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+            <h2 class="text-primary fw-bold border-start border-4 border-primary ps-3">DANH SÁCH YÊU CẦU TƯ VẤN</h2>
+        </div>
+
+        <div class="card shadow border-0 rounded-3 mb-5">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="py-3 ps-3">Mã TV</th>
+                                <th class="py-3">Họ Tên</th>
+                                <th class="py-3">SĐT</th>
+                                <th class="py-3">Nội Dung</th>
+                                <th class="py-3">Ngày Tạo</th>
+                                <th class="py-3 text-center no-print">Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Check if table exists first to avoid error if not yet created
+                            $check_tv = $conn->query("SHOW TABLES LIKE 'TU_VAN'");
+                            if ($check_tv->num_rows > 0) {
+                                $sql_tv = "SELECT * FROM TU_VAN ORDER BY NGAYTAO DESC";
+                                $result_tv = $conn->query($sql_tv);
+
+                                if ($result_tv->num_rows > 0) {
+                                    while($row_tv = $result_tv->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td class="ps-3 fw-bold text-primary"><?php echo $row_tv['MATV']; ?></td>
+                                    <td class="fw-bold"><?php echo $row_tv['HOTEN']; ?></td>
+                                    <td><?php echo $row_tv['SDT']; ?></td>
+                                    <td><?php echo mb_strimwidth($row_tv['NOIDUNG'], 0, 50, "..."); ?></td>
+                                    <td><?php echo date('d/m/Y H:i', strtotime($row_tv['NGAYTAO'])); ?></td>
+                                    <td class="text-center no-print">
+                                        <button class="btn btn-sm btn-outline-info me-1" 
+                                                onclick="showConsultationDetails('<?php echo $row_tv['HOTEN']; ?>', '<?php echo $row_tv['SDT']; ?>', '<?php echo htmlspecialchars(addslashes($row_tv['NOIDUNG'])); ?>', '<?php echo $row_tv['MASP']; ?>')">
+                                            <i class="fa-solid fa-eye"></i> Xem
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php 
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='6' class='text-center py-5 text-muted'>Chưa có yêu cầu tư vấn nào.</td></tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6' class='text-center py-5 text-muted'>Bảng dữ liệu chưa được khởi tạo. Hãy thực hiện một yêu cầu tư vấn để tạo bảng.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal View Details -->
+        <div class="modal fade" id="viewConsultationModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title fw-bold">CHI TIẾT TƯ VẤN</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Họ tên:</strong> <span id="view_hoten"></span></p>
+                        <p><strong>SĐT:</strong> <span id="view_sdt"></span></p>
+                        <p><strong>Mã SP quan tâm:</strong> <span id="view_masp"></span></p>
+                        <p><strong>Nội dung:</strong></p>
+                        <div class="p-3 bg-light border rounded" id="view_noidung"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" id="btn_call_customer" class="btn btn-success"><i class="fa-solid fa-phone me-2"></i> Gọi Khách</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function showConsultationDetails(hoten, sdt, noidung, masp) {
+                document.getElementById('view_hoten').innerText = hoten;
+                document.getElementById('view_sdt').innerText = sdt;
+                document.getElementById('view_masp').innerText = masp || 'Không có';
+                document.getElementById('view_noidung').innerText = noidung;
+                document.getElementById('btn_call_customer').href = 'tel:' + sdt;
+                
+                var myModal = new bootstrap.Modal(document.getElementById('viewConsultationModal'));
+                myModal.show();
+            }
+        </script>
     </div>
 
     <footer class="bg-white border-top py-3">

@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../config/ConnectDB.php';
 
 if (isset($_POST['btn-reg'])) {
     // Lấy dữ liệu từ form

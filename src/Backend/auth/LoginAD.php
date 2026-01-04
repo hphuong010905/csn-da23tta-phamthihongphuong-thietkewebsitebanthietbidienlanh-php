@@ -1,9 +1,9 @@
 <?php
-require_once 'cauhinhSS.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
 // --- SỬA LỖI 1: Kiểm tra file kết nối ---
 // Đảm bảo bạn đã có file 'ketnoi.php' trong cùng thư mục
-if (file_exists('ConnectDB.php')) {
-    require_once 'ConnectDB.php';
+if (file_exists(__DIR__ . '/../config/ConnectDB.php')) {
+    require_once __DIR__ . '/../config/ConnectDB.php';
 } else {
     die("<div style='color:red; text-align:center; padding:20px;'>
             LỖI: Không tìm thấy file <b>ketnoi.php</b>!<br>
@@ -25,7 +25,7 @@ if (isset($_POST['btn-login'])) {
             $row = $result->fetch_assoc();
             if (password_verify($matkhau, $row['MATKHAU'])) {
                 $_SESSION['admin_id'] = $row['MAQT'];
-                    echo "<script>alert('Đăng nhập thành công!'); window.location.href='QTHT.php';</script>";
+                    echo "<script>alert('Đăng nhập thành công!'); window.location.href='../../Frontend/views/QTHT.php';</script>";
             } else {
                 echo "<script>alert('Sai mật khẩu!');</script>";
             }

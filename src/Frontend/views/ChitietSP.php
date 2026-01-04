@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // ... (Giữ nguyên phần xử lý lấy sản phẩm) ...
 if (isset($_GET['id'])) {
@@ -26,8 +26,8 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $row['TENSP']; ?></title>
-    <link rel="stylesheet" href="bootstrap-5.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="stylesheet" href="../assets/libs/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/libs/fontawesome-free-6.7.2-web/fontawesome-free-6.7.2-web/css/all.min.css">
     <style>
         /* CẤU TRÚC TRANG */
         body {
@@ -56,7 +56,7 @@ if (isset($_GET['id'])) {
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
-                <img src="img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
+                <img src="../assets/img/img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
                 <span class="fw-bold fs-4" style= "color: white;">Thế giới điện lạnh</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -83,7 +83,7 @@ if (isset($_GET['id'])) {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2" href="profileUser.php"><i class="fa-solid fa-id-card me-2 text-primary"></i> Thông tin cá nhân</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
                     <?php elseif (isset($_SESSION['admin_id'])): ?>
@@ -95,12 +95,12 @@ if (isset($_GET['id'])) {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2 fw-bold" href="QTHT.php"><i class="fa-solid fa-screwdriver-wrench me-2 text-warning"></i> Trang Quản Trị</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LoginAD.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a href="LoginUser.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm">
+                            <a href="../../Backend/auth/LoginUser.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm">
                                 <i class="fa-regular fa-user fs-5"></i> Đăng nhập
                             </a>
                         </li>
@@ -124,6 +124,21 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </nav>
+
+    <!-- Menu Danh Mục Đồng Bộ -->
+    <div class="row mb-3 shadow-sm" style="background-color: #f8f9fa;">
+        <div class="col-12 text-center py-2">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="danhmuc.php?madm=ML" class="btn fw-bold text-dark">Máy Lạnh</a>
+                <a href="danhmuc.php?madm=MG" class="btn fw-bold text-dark">Máy Giặt</a>
+                <a href="danhmuc.php?madm=MS" class="btn fw-bold text-dark">Máy sấy quần áo</a>
+                <a href="danhmuc.php?madm=TL" class="btn fw-bold text-dark">Tủ Lạnh</a>
+                <a href="danhmuc.php?madm=TM" class="btn fw-bold text-dark">Tủ mát</a>
+                <a href="danhmuc.php?madm=TD" class="btn fw-bold text-dark">Tủ đông</a>
+                <a href="danhmuc.php?madm=MNN" class="btn fw-bold text-dark">Máy nước nóng</a>
+            </div>
+        </div>
+    </div>
 
     <main class="container">
         <div class="row mb-3">
@@ -235,7 +250,7 @@ if (isset($_GET['id'])) {
                             </button>
                         <?php endif; ?>
 
-                        <button class="btn btn-primary w-100 fw-bold py-2">
+                        <button type="button" class="btn btn-primary w-100 fw-bold py-2" data-bs-toggle="modal" data-bs-target="#consultationModal">
                             <i class="fa-solid fa-phone me-2"></i> GỌI TƯ VẤN
                         </button>
                     </div>
@@ -289,7 +304,7 @@ if (isset($_GET['id'])) {
                 if(txt != '')
                 {
                     $.ajax({
-                        url:"search_product.php",
+                        url:"../../Backend/api/search_product.php",
                         method:"post",
                         data:{keyword:txt},
                         dataType:"text",
@@ -320,7 +335,7 @@ if (isset($_GET['id'])) {
             formData.append('id', masp);
 
             // Gửi yêu cầu ngầm đến file ajax_cart.php
-            fetch('ajax_cart.php', {
+            fetch('../../Backend/api/ajax_cart.php', {
                 method: 'POST',
                 body: formData
             })
@@ -338,6 +353,66 @@ if (isset($_GET['id'])) {
             });
         }
     </script>
-    <script src="bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Consultation Modal -->
+    <div class="modal fade" id="consultationModal" tabindex="-1" aria-labelledby="consultationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold" id="consultationModalLabel"><i class="fa-solid fa-headset me-2"></i>ĐĂNG KÝ TƯ VẤN</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Vui lòng để lại thông tin, chúng tôi sẽ liên hệ lại ngay!</p>
+                    <form id="consultationForm">
+                        <input type="hidden" name="masp" value="<?php echo $row['MASP']; ?>">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="hoten" required placeholder="Nhập họ tên của bạn">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" name="sdt" required placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nội dung cần tư vấn</label>
+                            <textarea class="form-control" name="noidung" rows="3" placeholder="Bạn cần tư vấn thêm về điều gì?"></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary fw-bold">GỬI YÊU CẦU</button>
+                            <a href="tel:0393710219" class="btn btn-outline-danger fw-bold"><i class="fa-solid fa-phone me-2"></i> GỌI NGAY CHO ADMIN</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+
+            fetch('../../Backend/api/submit_consultation.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('consultationModal'));
+                    modal.hide();
+                    this.reset();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra, vui lòng thử lại sau.');
+            });
+        });
+    </script>
 </body>
 </html>

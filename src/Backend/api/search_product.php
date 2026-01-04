@@ -1,5 +1,5 @@
 <?php
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../config/ConnectDB.php';
 
 if (isset($_POST['keyword'])) {
     $keyword = $_POST['keyword'];

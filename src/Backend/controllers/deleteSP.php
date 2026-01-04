@@ -1,7 +1,7 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
-require_once 'admin_check.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../config/ConnectDB.php';
+require_once __DIR__ . '/../auth/admin_check.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -12,13 +12,13 @@ if (isset($_GET['id'])) {
     if ($conn->query($sql) === TRUE) {
         echo "<script>
                 alert('Đã xóa sản phẩm thành công!');
-                window.location.href = 'QLSP.php';
+                window.location.href = '../../Frontend/views/QLSP.php';
               </script>";
     } else {
         echo "Lỗi xóa: " . $conn->error;
     }
 } else {
     // Nếu không có ID thì đá về trang chủ admin
-    header("Location: QLSP.php");
+    header("Location: ../../Frontend/views/QLSP.php");
 }
 ?>

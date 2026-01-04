@@ -1,8 +1,13 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'admin_check.php'; // Kiểm tra bảo mật
-require_once 'ConnectDB.php';      // Kết nối CSDL
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/auth/admin_check.php'; // Kiểm tra bảo mật
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';      // Kết nối CSDL
 
+// Kiểm tra và thêm cột SOLUONG nếu chưa có
+$check_col = $conn->query("SHOW COLUMNS FROM SAN_PHAM LIKE 'SOLUONG'");
+if ($check_col->num_rows == 0) {
+    $conn->query("ALTER TABLE SAN_PHAM ADD COLUMN SOLUONG INT DEFAULT 10");
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +38,7 @@ require_once 'ConnectDB.php';      // Kết nối CSDL
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="ms-auto d-flex text-white align-items-center mt-2 mt-lg-0">
                 <span class="me-3">Xin chào, <b class="text-warning"><?php echo $_SESSION['admin_id']; ?></b></span>
-                <a href="LoginAD.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
+                <a href="../../Backend/auth/LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
                     <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                 </a>
             </div>
@@ -45,7 +50,7 @@ require_once 'ConnectDB.php';      // Kết nối CSDL
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="text-primary">Danh sách sản phẩm</h2>
-            <a href="addSP.php" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới sản phẩm</a>
+            <a href="../../Backend/controllers/addSP.php" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới sản phẩm</a>
         </div>
 
         <div class="card shadow">
@@ -56,6 +61,7 @@ require_once 'ConnectDB.php';      // Kết nối CSDL
                             <th class="col-2">Mã SP</th>
                             <th class="col-2">Hình ảnh</th>
                             <th class="col-2">Tên sản phẩm</th>
+                            <th class="col-1">Số lượng</th>
                             <th class="col-2">Giá tiền</th>
                             <th class="col-2">Danh mục</th>
                             <th class="col-2">Thao tác</th>
@@ -82,13 +88,14 @@ require_once 'ConnectDB.php';      // Kết nối CSDL
                                 <td><?php echo $row['MASP']; ?></td>
                                 <td><img src="<?php echo $src; ?>" style="height: 60px;"></td>
                                 <td class="text-start"><?php echo $row['TENSP']; ?></td>
+                                <td class="fw-bold"><?php echo isset($row['SOLUONG']) ? $row['SOLUONG'] : 0; ?></td>
                                 <td class="fw-bold text-danger"><?php echo number_format($row['DONGIA']); ?>đ</td>
                                 <td><span class="badge bg-info text-dark"><?php echo $row['TENDM']; ?></span></td>
                                 <td>
-                                    <a href="changeSP.php?id=<?php echo $row['MASP']; ?>" class="btn btn-sm btn-warning">
+                                    <a href="../../Backend/controllers/changeSP.php?id=<?php echo $row['MASP']; ?>" class="btn btn-sm btn-warning">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a href="deleteSP.php?id=<?php echo $row['MASP']; ?>" 
+                                    <a href="../../Backend/controllers/deleteSP.php?id=<?php echo $row['MASP']; ?>" 
                                        class="btn btn-sm btn-danger"
                                        onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
                                        <i class="fa fa-trash"></i>

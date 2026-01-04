@@ -1,14 +1,14 @@
 <?php
 // 1. Cấu hình & Khởi động Session
-require_once 'cauhinhSS.php'; 
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php'; 
 
 // 2. Kiểm tra đăng nhập
 if (!isset($_SESSION['admin_id']) || empty($_SESSION['admin_id'])) {
-    header("Location: LoginAD.php");
+    header("Location: ../../Backend/auth/LoginUser.php");
     exit(); 
 }
 
-require_once 'ConnectDB.php'; // Kết nối CSDL
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php'; // Kết nối CSDL
 
 // --- [MỚI] 3. TRUY VẤN SỐ LIỆU THỐNG KÊ ---
 // Đếm số sản phẩm
@@ -68,7 +68,7 @@ $count_dm = $conn->query($sql_dm)->fetch_assoc()['total'];
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="ms-auto d-flex text-white align-items-center">
                     <span class="me-3">Xin chào, <b class="text-warning"><?php echo $_SESSION['admin_id']; ?></b></span>
-                    <a href="LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
+                    <a href="../../Backend/auth/LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
                         <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                     </a>
                 </div>

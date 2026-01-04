@@ -1,8 +1,8 @@
 <?php
 // 1. Cấu hình & Bảo mật
-require_once 'cauhinhSS.php';
-require_once 'admin_check.php'; 
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/auth/admin_check.php'; 
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // // --- LOGIC XỬ LÝ XÓA (Giữ nguyên logic xóa tại đây cho tiện) ---
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
@@ -53,7 +53,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="ms-auto d-flex text-white align-items-center mt-2 mt-lg-0">
                 <span class="me-3">Xin chào, <b class="text-warning"><?php echo $_SESSION['admin_id']; ?></b></span>
-                <a href="LoginAD.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
+                <a href="../../Backend/auth/LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
                     <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                 </a>
             </div>
@@ -68,7 +68,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
             <h2 class="text-warning fw-bold border-start border-4 border-warning ps-3" style="color: #b37400 !important;">DANH SÁCH DANH MỤC</h2>
             
             <div class="d-flex gap-2 no-print">
-                <a href="addDM.php" class="btn btn-warning text-white fw-bold shadow-sm">
+                <a href="../../Backend/controllers/addDM.php" class="btn btn-warning text-white fw-bold shadow-sm">
                     <i class="fa-solid fa-plus me-1"></i> Thêm Mới
                 </a>
                 
@@ -110,7 +110,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
                                         </span>
                                     </td>
                                     <td class="text-center no-print">
-                                        <a href="editDM.php?id=<?php echo $row['MADM']; ?>" class="btn btn-sm btn-outline-warning mx-1">
+                                        <a href="../../Backend/controllers/editDM.php?id=<?php echo $row['MADM']; ?>" class="btn btn-sm btn-outline-warning mx-1">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         

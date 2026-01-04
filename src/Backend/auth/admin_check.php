@@ -1,5 +1,5 @@
 <?php
-require_once 'cauhinhSS.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
 // 1. Kiểm tra xem phiên làm việc (Session) đã bật chưa, nếu chưa thì bật lên
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

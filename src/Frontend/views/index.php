@@ -49,7 +49,7 @@ require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2" href="profileUser.php"><i class="fa-solid fa-id-card me-2 text-primary"></i> Thông tin cá nhân</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
 
@@ -97,30 +97,16 @@ require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
         </div>
     </nav>
     <!-- Kết thúc header -->
-     <div class="row mb-5">
-        <div class="col-12 text-center bg-light">
-            <div class="d-flex justify-content-center gap-3 flex-wrap" style="color: rgba(0, 0, 0, 1);">
-                <a href="danhmuc.php?madm=ML" class="btn">
-                   Máy Lạnh
-                </a>
-                <a href="danhmuc.php?madm=MG" class="btn">
-                   Máy Giặt
-                </a>
-                <a href="danhmuc.php?madm=TD" class="btn">
-                   Máy sấy quần áo
-                </a>
-                <a href="danhmuc.php?madm=TL" class="btn">
-                    Tủ Lạnh
-                </a>
-                <a href="danhmuc.php?madm=TD" class="btn">
-                   Tủ mát
-                </a>
-                <a href="danhmuc.php?madm=TD" class="btn">
-                   Tủ đông
-                </a>
-                <a href="danhmuc.php?madm=TD" class="btn">
-                   Máy nước nóng
-                </a>
+     <div class="row mb-3 shadow-sm" style="background-color: #f8f9fa;">
+        <div class="col-12 text-center py-2">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="danhmuc.php?madm=ML" class="btn fw-bold text-dark">Máy Lạnh</a>
+                <a href="danhmuc.php?madm=MG" class="btn fw-bold text-dark">Máy Giặt</a>
+                <a href="danhmuc.php?madm=MS" class="btn fw-bold text-dark">Máy sấy quần áo</a>
+                <a href="danhmuc.php?madm=TL" class="btn fw-bold text-dark">Tủ Lạnh</a>
+                <a href="danhmuc.php?madm=TM" class="btn fw-bold text-dark">Tủ mát</a>
+                <a href="danhmuc.php?madm=TD" class="btn fw-bold text-dark">Tủ đông</a>
+                <a href="danhmuc.php?madm=MNN" class="btn fw-bold text-dark">Máy nước nóng</a>
             </div>
         </div>
     </div>
@@ -336,7 +322,7 @@ require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
             formData.append('id', masp);
 
             // Gửi yêu cầu ngầm đến file ajax_cart.php
-            fetch('ajax_cart.php', {
+            fetch('../../Backend/api/ajax_cart.php', {
                 method: 'POST',
                 body: formData
             })

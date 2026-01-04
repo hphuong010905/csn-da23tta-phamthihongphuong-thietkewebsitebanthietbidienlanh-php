@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // 1. LẤY MÃ TỪ URL
 $madm = "";
@@ -43,7 +43,7 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
         
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
-                <img src="img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
+                <img src="../assets/img/img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
                 <span class="fw-bold fs-4" style= "color: white;">Thế giới điện lạnh</span>
             </a>
 
@@ -73,7 +73,7 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2" href="profileUser.php"><i class="fa-solid fa-id-card me-2 text-primary"></i> Thông tin cá nhân</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
 
@@ -86,13 +86,13 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2 fw-bold" href="QTHT.php"><i class="fa-solid fa-screwdriver-wrench me-2 text-warning"></i> Trang Quản Trị</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LoginAD.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
 
                     <?php else: ?>
                         <li class="nav-item">
-                            <a href="LoginUser.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm">
+                            <a href="../../Backend/auth/LoginUser.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm">
                                 <i class="fa-regular fa-user fs-5"></i> Đăng nhập
                             </a>
                         </li>
@@ -120,6 +120,22 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
             </div>
         </div>
     </nav>
+
+    <!-- Menu Danh Mục Đồng Bộ -->
+    <div class="row mb-3 shadow-sm" style="background-color: #f8f9fa;">
+        <div class="col-12 text-center py-2">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="danhmuc.php?madm=ML" class="btn fw-bold text-dark">Máy Lạnh</a>
+                <a href="danhmuc.php?madm=MG" class="btn fw-bold text-dark">Máy Giặt</a>
+                <a href="danhmuc.php?madm=MS" class="btn fw-bold text-dark">Máy sấy quần áo</a>
+                <a href="danhmuc.php?madm=TL" class="btn fw-bold text-dark">Tủ Lạnh</a>
+                <a href="danhmuc.php?madm=TM" class="btn fw-bold text-dark">Tủ mát</a>
+                <a href="danhmuc.php?madm=TD" class="btn fw-bold text-dark">Tủ đông</a>
+                <a href="danhmuc.php?madm=MNN" class="btn fw-bold text-dark">Máy nước nóng</a>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-light bg-white shadow-sm mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.php">
@@ -165,7 +181,7 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
                                             <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
                                         </a>
                                     <?php else: ?>
-                                        <button onclick="alert('Vui lòng đăng nhập để mua hàng!'); window.location.href='LoginUser.php';" class="btn btn-outline-primary rounded-pill btn-sm fw-bold">
+                                        <button onclick="alert('Vui lòng đăng nhập để mua hàng!'); window.location.href='../../Backend/auth/LoginUser.php';" class="btn btn-outline-primary rounded-pill btn-sm fw-bold">
                                             <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
                                         </button>
                                     <?php endif; ?>
@@ -237,7 +253,7 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
             let formData = new FormData();
             formData.append('id', masp);
 
-            fetch('ajax_cart.php', {
+            fetch('../../Backend/api/ajax_cart.php', {
                 method: 'POST',
                 body: formData
             })
@@ -262,7 +278,7 @@ if (isset($_GET['madm']) && !empty($_GET['madm'])) {
                 if(txt != '')
                 {
                     $.ajax({
-                        url:"search_product.php",
+                        url:"../../Backend/api/search_product.php",
                         method:"post",
                         data:{keyword:txt, madm:madm},
                         dataType:"text",

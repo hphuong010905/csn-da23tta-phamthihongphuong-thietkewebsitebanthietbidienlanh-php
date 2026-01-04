@@ -1,12 +1,13 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
-require_once 'admin_check.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../config/ConnectDB.php';
+require_once __DIR__ . '/../auth/admin_check.php';
 
 // Xử lý khi nhấn nút Lưu
 if (isset($_POST['btn-save'])) {
     $masp = $_POST['masp'];
     $tensp = $_POST['tensp'];
+    $soluong = isset($_POST['soluong']) ? $_POST['soluong'] : 0;
     $dongia = $_POST['dongia'];
     $madm = $_POST['madm'];
     $motasp = $_POST['motasp'];
@@ -21,11 +22,11 @@ if (isset($_POST['btn-save'])) {
     // Lấy mã admin đang đăng nhập (nếu có cột MAQT trong bảng SP)
     // $maqt = $_SESSION['admin_id']; 
 
-    $sql = "INSERT INTO SAN_PHAM (MASP, MADM, TENSP, DONGIA, MOTASP, THONGSOKYTHUAT, HINHANHSP) 
-            VALUES ('$masp', '$madm', '$tensp', '$dongia', '$motasp', '$thongso', '$hinh_data')";
+    $sql = "INSERT INTO SAN_PHAM (MASP, MADM, TENSP, SOLUONG, DONGIA, MOTASP, THONGSOKYTHUAT, HINHANHSP) 
+            VALUES ('$masp', '$madm', '$tensp', '$soluong', '$dongia', '$motasp', '$thongso', '$hinh_data')";
     
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Thêm thành công!'); window.location.href='QLSP.php';</script>";
+        echo "<script>alert('Thêm thành công!'); window.location.href='../../Frontend/views/QLSP.php';</script>";
     } else {
         echo "<div class='alert alert-danger text-center'>Lỗi: " . $conn->error . "</div>";
     }
@@ -58,6 +59,11 @@ if (isset($_POST['btn-save'])) {
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tên Sản Phẩm</label>
                                 <input type="text" name="tensp" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Số Lượng</label>
+                                <input type="number" name="soluong" class="form-control" required value="10" min="0">
                             </div>
 
                             <div class="row">
@@ -96,7 +102,7 @@ if (isset($_POST['btn-save'])) {
                             </div>
 
                             <button type="submit" name="btn-save" class="btn btn-primary">Lưu Sản Phẩm</button>
-                            <a href="QLSP.php" class="btn btn-secondary">Hủy</a>
+                            <a href="../../Frontend/views/QLSP.php" class="btn btn-secondary">Hủy</a>
                         </form>
                     </div>
                 </div>

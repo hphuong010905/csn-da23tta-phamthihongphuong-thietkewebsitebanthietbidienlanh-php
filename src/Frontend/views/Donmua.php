@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // 1. KIỂM TRA ĐĂNG NHẬP
 if (!isset($_SESSION['kh_id'])) {
@@ -10,7 +10,7 @@ if (!isset($_SESSION['kh_id'])) {
         $res = $conn->query("SELECT MAKH FROM KHACH_HANG WHERE TENKH = '$name'");
         if ($res->num_rows > 0) $_SESSION['kh_id'] = $res->fetch_assoc()['MAKH'];
     } else {
-        header("Location: LoginUser.php");
+        header("Location: ../../Backend/auth/LoginUser.php");
         exit();
     }
 }
@@ -120,7 +120,22 @@ $result_dh = $conn->query($sql_dh);
     </div>
 </nav>
 
-<div class="container" style="margin-top: 80px;">
+<!-- Menu Danh Mục Đồng Bộ -->
+<div class="row mb-3 shadow-sm" style="background-color: #f8f9fa; margin-top: 80px;">
+    <div class="col-12 text-center py-2">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="danhmuc.php?madm=ML" class="btn fw-bold text-dark">Máy Lạnh</a>
+            <a href="danhmuc.php?madm=MG" class="btn fw-bold text-dark">Máy Giặt</a>
+            <a href="danhmuc.php?madm=MS" class="btn fw-bold text-dark">Máy sấy quần áo</a>
+            <a href="danhmuc.php?madm=TL" class="btn fw-bold text-dark">Tủ Lạnh</a>
+            <a href="danhmuc.php?madm=TM" class="btn fw-bold text-dark">Tủ mát</a>
+            <a href="danhmuc.php?madm=TD" class="btn fw-bold text-dark">Tủ đông</a>
+            <a href="danhmuc.php?madm=MNN" class="btn fw-bold text-dark">Máy nước nóng</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 20px;">
     <div class="row">
         
         <div class="col-md-3">
@@ -137,6 +152,7 @@ $result_dh = $conn->query($sql_dh);
                 <div class="sidebar-menu">
                     <a href="profileUser.php"><i class="fa-regular fa-user text-primary"></i> Tài khoản của tôi</a>
                     <a href="Donmua.php" class="active"><i class="fa-solid fa-file-invoice-dollar text-primary"></i> Đơn mua</a>
+                    <a href="../../Backend/auth/LogoutUser.php" class="text-danger"><i class="fa-solid fa-right-from-bracket text-primary"></i> Đăng xuất</a>
                 </div>
             </div>
         </div>

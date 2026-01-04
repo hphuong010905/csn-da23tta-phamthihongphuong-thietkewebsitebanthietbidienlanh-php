@@ -12,8 +12,8 @@
 - **Họ và tên**: [Họ tên sinh viên]
 - **MSSV**: [Mã số sinh viên]
 - **Lớp**: DA23TTA
-- **Khoa**: Công nghệ Thông tin và Truyền thông
-- **Trường**: Đại học Cần Thơ
+- **Khoa**: Công nghệ Thông tin
+- **Trường**: Đại học Trà Vinh
 
 **Giảng viên hướng dẫn**: [Tên giảng viên]
 
@@ -21,7 +21,7 @@
 
 ## 📞 Thông tin liên hệ
 
-- **Email**: hphuong010905@student.ctu.edu.vn
+- **Email**: hphuong010905@st.tvu.edu.vn
 - **Phone**: [Số điện thoại]
 - **GitHub**: https://github.com/hphuong010905
 - **Repository**: https://github.com/hphuong010905/csn-da23tta-thietkewebditebanthietbidienlanh-php.git
@@ -228,16 +228,16 @@ https://github.com/hphuong010905/csn-da23tta-thietkewebditebanthietbidienlanh-ph
 
 ## 📄 License
 
-Dự án này được phát triển cho mục đích học tập tại Đại học Cần Thơ.
+Dự án này được phát triển cho mục đích học tập tại Đại học Trà Vinh.
 
 ---
 
 ## 🙏 Lời cảm ơn
 
 - Giảng viên hướng dẫn: [Tên giảng viên]
-- Khoa Công nghệ Thông tin và Truyền thông - Đại học Cần Thơ
+- Khoa Công nghệ Thông tin - Trường Đại học Trà Vinh
 - Các bạn trong lớp DA23TTA
 
 ---
 
-**© 2025 - Đồ án tốt nghiệp - Đại học Cần Thơ**
+**© 2025 - Đồ án cơ sở ngành - Trường Đại học Trà Vinh**

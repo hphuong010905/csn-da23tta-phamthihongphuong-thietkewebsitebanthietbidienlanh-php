@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 
 // 2. CẬP NHẬT TRẠNG THÁI
@@ -67,7 +67,7 @@ $result_dh = $conn->query($sql_dh);
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="ms-auto d-flex text-white align-items-center mt-2 mt-lg-0">
                 <span class="me-3">Xin chào, <b class="text-warning"><?php echo $_SESSION['admin_id']; ?></b></span>
-                <a href="LoginAD.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
+                <a href="../../Backend/auth/LogoutUser.php" class="btn btn-sm btn-light text-danger fw-bold shadow-sm">
                     <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                 </a>
             </div>

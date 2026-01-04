@@ -1,10 +1,10 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // 1. Kiểm tra đăng nhập (Chưa đăng nhập thì đuổi về)
 if (!isset($_SESSION['kh_name'])) {
-    header("Location: LoginUser.php");
+    header("Location: ../../Backend/auth/LoginUser.php");
     exit();
 }
 
@@ -69,7 +69,7 @@ if (isset($_POST['btn_update'])) {
         
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.php">
-                <img src="img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
+                <img src="../assets/img/img/bg-1.png" alt="Logo" style="height: 60px; width: auto;" class="me-2">
                 <span class="fw-bold fs-4" style= "color: white;">Thế giới điện lạnh</span>
             </a>
 
@@ -90,7 +90,7 @@ if (isset($_POST['btn_update'])) {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 animate slideIn">
                                 <li><a class="dropdown-item py-2" href="profileUser.php"><i class="fa-solid fa-id-card me-2 text-primary"></i> Thông tin cá nhân</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
+                                <li><a class="dropdown-item py-2 text-danger fw-bold" href="../../Backend/auth/LogoutUser.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                             </ul>
                         </li>
 
@@ -132,6 +132,20 @@ if (isset($_POST['btn_update'])) {
         </div>
     </nav>
 
+    <!-- Menu Danh Mục Đồng Bộ -->
+    <div class="row mb-3 shadow-sm" style="background-color: #f8f9fa;">
+        <div class="col-12 text-center py-2">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="danhmuc.php?madm=ML" class="btn fw-bold text-dark">Máy Lạnh</a>
+                <a href="danhmuc.php?madm=MG" class="btn fw-bold text-dark">Máy Giặt</a>
+                <a href="danhmuc.php?madm=MS" class="btn fw-bold text-dark">Máy sấy quần áo</a>
+                <a href="danhmuc.php?madm=TL" class="btn fw-bold text-dark">Tủ Lạnh</a>
+                <a href="danhmuc.php?madm=TM" class="btn fw-bold text-dark">Tủ mát</a>
+                <a href="danhmuc.php?madm=TD" class="btn fw-bold text-dark">Tủ đông</a>
+                <a href="danhmuc.php?madm=MNN" class="btn fw-bold text-dark">Máy nước nóng</a>
+            </div>
+        </div>
+    </div>
 
     <div class="container my-4">
         <div class="row">
@@ -150,7 +164,7 @@ if (isset($_POST['btn_update'])) {
                     <div>
                         <a href="profile.php" class="nav-link-profile active"><i class="fa-solid fa-user me-2 text-primary"></i> Tài khoản của tôi</a>
                         <a href="Donmua.php" class="nav-link-profile"><i class="fa-solid fa-file-invoice-dollar me-2 text-primary"></i> Đơn mua</a>
-                        <a href="LogoutUser.php" class="nav-link-profile text-danger border-0"><i class="fa-solid fa-right-from-bracket me-2 text-primary"></i> Đăng xuất</a>
+                        <a href="../../Backend/auth/LogoutUser.php" class="nav-link-profile text-danger border-0"><i class="fa-solid fa-right-from-bracket me-2 text-primary"></i> Đăng xuất</a>
                     </div>
                 </div>
             </div>

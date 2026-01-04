@@ -1,6 +1,6 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../../Backend/config/cauhinhSS.php';
+require_once __DIR__ . '/../../Backend/config/ConnectDB.php';
 
 // 1. Kiểm tra đăng nhập và giỏ hàng
 // Chấp nhận cả trường hợp chỉ có tên (phiên đăng nhập cũ)

@@ -1,8 +1,8 @@
 <?php
 // 1. Cấu hình & Bảo mật
-require_once 'cauhinhSS.php';
-require_once 'admin_check.php'; 
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../auth/admin_check.php'; 
+require_once __DIR__ . '/../config/ConnectDB.php';
 
 // --- BIẾN CHỨA DỮ LIỆU ---
 $id = '';
@@ -19,12 +19,12 @@ if (isset($_GET['id'])) {
         $ten_hien_tai = $row['TENDM'];
     } else {
         // Nếu id không tồn tại -> Quay về trang danh sách
-        header("Location: QLDM.php");
+        header("Location: ../../Frontend/views/QLDM.php");
         exit();
     }
 } else {
     // Không có id trên URL -> Quay về
-    header("Location: QLDM.php");
+    header("Location: ../../Frontend/views/QLDM.php");
     exit();
 }
 
@@ -38,7 +38,7 @@ if (isset($_POST['btn_update'])) {
         $sql_update = "UPDATE DANH_MUC SET TENDM = '$ten_moi' WHERE MADM = '$id'";
         
         if ($conn->query($sql_update) === TRUE) {
-            echo "<script>alert('Cập nhật thành công!'); window.location.href='QLDM.php';</script>";
+            echo "<script>alert('Cập nhật thành công!'); window.location.href='../../Frontend/views/QLDM.php';</script>";
             exit();
         } else {
             echo "<script>alert('Lỗi SQL: " . $conn->error . "');</script>";
@@ -59,7 +59,7 @@ if (isset($_POST['btn_update'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="QTDM.php">
+            <a class="navbar-brand fw-bold text-uppercase" href="../../Frontend/views/QTHT.php">
                 <i class="fa-solid fa-gauge-high me-2"></i> Về Dashboard
             </a>
             <div class="ms-auto text-white">
@@ -94,7 +94,7 @@ if (isset($_POST['btn_update'])) {
                                     <i class="fa-solid fa-save me-1"></i> Cập Nhật
                                 </button>
                                 
-                                <a href="QLDM.php" class="btn btn-secondary w-100">
+                                <a href="../../Frontend/views/QLDM.php" class="btn btn-secondary w-100">
                                     <i class="fa-solid fa-arrow-left me-1"></i> Quay lại
                                 </a>
                             </div>

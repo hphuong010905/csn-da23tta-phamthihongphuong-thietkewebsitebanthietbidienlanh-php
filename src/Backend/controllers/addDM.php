@@ -1,8 +1,8 @@
 <?php
 // 1. Cấu hình & Bảo mật
-require_once 'cauhinhSS.php';
-require_once 'admin_check.php'; 
-require_once 'ConnectDB.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../auth/admin_check.php'; 
+require_once __DIR__ . '/../config/ConnectDB.php';
 
 // 2. XỬ LÝ THÊM MỚI
 if (isset($_POST['btn_add'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['btn_add'])) {
         } else {
             $sql = "INSERT INTO DANH_MUC (MADM, TENDM) VALUES ('$ma', '$ten')";
             if ($conn->query($sql) === TRUE) {
-                echo "<script>alert('Thêm thành công!'); window.location.href='QLDM.php';</script>";
+                echo "<script>alert('Thêm thành công!'); window.location.href='../../Frontend/views/QLDM.php';</script>";
                 exit();
             } else {
                 echo "<script>alert('Lỗi SQL: " . $conn->error . "');</script>";
@@ -40,7 +40,7 @@ if (isset($_POST['btn_add'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="QLDM.php">
+            <a class="navbar-brand fw-bold text-uppercase" href="../../Frontend/views/QLDM.php">
                 <i class="fa-solid fa-gauge-high me-2"></i> Về Dashboard
             </a>
             
@@ -74,7 +74,7 @@ if (isset($_POST['btn_add'])) {
                                     <i class="fa-solid fa-save me-1"></i> Lưu Lại
                                 </button>
                                 
-                                <a href="QLDM.php" class="btn btn-secondary w-100">
+                                <a href="../../Frontend/views/QLDM.php" class="btn btn-secondary w-100">
                                     <i class="fa-solid fa-arrow-left me-1"></i> Quay lại DS
                                 </a>
                             </div>
@@ -83,7 +83,7 @@ if (isset($_POST['btn_add'])) {
                 </div>
                 
                 <div class="text-center mt-3">
-                    <a href="QTHT.php" class="text-decoration-none text-muted small">
+                    <a href="../../Frontend/views/QTHT.php" class="text-decoration-none text-muted small">
                         <i class="fa-solid fa-house"></i> Trở về trang chủ quản trị
                     </a>
                 </div>

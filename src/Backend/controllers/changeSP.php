@@ -1,7 +1,7 @@
 <?php
-require_once 'cauhinhSS.php';
-require_once 'ConnectDB.php';
-require_once 'admin_check.php';
+require_once __DIR__ . '/../config/cauhinhSS.php';
+require_once __DIR__ . '/../config/ConnectDB.php';
+require_once __DIR__ . '/../auth/admin_check.php';
 
 // 1. Lấy ID sản phẩm cần sửa
 if (isset($_GET['id'])) {
@@ -10,12 +10,13 @@ if (isset($_GET['id'])) {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 } else {
-    header("Location: QLSP.php");
+    header("Location: ../../Frontend/views/QLSP.php");
 }
 
 // 2. Xử lý khi nhấn nút Cập Nhật
 if (isset($_POST['btn-update'])) {
     $tensp = $_POST['tensp'];
+    $soluong = isset($_POST['soluong']) ? $_POST['soluong'] : 0;
     $dongia = $_POST['dongia'];
     $madm = $_POST['madm'];
     $motasp = $_POST['motasp'];
@@ -26,19 +27,19 @@ if (isset($_POST['btn-update'])) {
         $hinh_data = addslashes(file_get_contents($_FILES['hinh']['tmp_name']));
         // Câu lệnh Update CÓ cập nhật hình ảnh
         $sql_update = "UPDATE SAN_PHAM SET 
-                       MADM='$madm', TENSP='$tensp', DONGIA='$dongia', 
+                       MADM='$madm', TENSP='$tensp', SOLUONG='$soluong', DONGIA='$dongia', 
                        MOTASP='$motasp', THONGSOKYTHUAT='$thongso', HINHANHSP='$hinh_data' 
                        WHERE MASP='$id'";
     } else {
         // Câu lệnh Update KHÔNG cập nhật hình ảnh (giữ ảnh cũ)
         $sql_update = "UPDATE SAN_PHAM SET 
-                       MADM='$madm', TENSP='$tensp', DONGIA='$dongia', 
+                       MADM='$madm', TENSP='$tensp', SOLUONG='$soluong', DONGIA='$dongia', 
                        MOTASP='$motasp', THONGSOKYTHUAT='$thongso' 
                        WHERE MASP='$id'";
     }
 
     if ($conn->query($sql_update) === TRUE) {
-        echo "<script>alert('Cập nhật thành công!'); window.location.href='QLSP.php';</script>";
+        echo "<script>alert('Cập nhật thành công!'); window.location.href='../../Frontend/views/QLSP.php';</script>";
     } else {
         echo "<div class='alert alert-danger'>Lỗi: " . $conn->error . "</div>";
     }
@@ -71,6 +72,11 @@ if (isset($_POST['btn-update'])) {
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tên Sản Phẩm</label>
                                 <input type="text" name="tensp" class="form-control" value="<?php echo $row['TENSP']; ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Số Lượng</label>
+                                <input type="number" name="soluong" class="form-control" value="<?php echo isset($row['SOLUONG']) ? $row['SOLUONG'] : 0; ?>" required min="0">
                             </div>
 
                             <div class="row">
@@ -116,7 +122,7 @@ if (isset($_POST['btn-update'])) {
                             </div>
 
                             <button type="submit" name="btn-update" class="btn btn-warning fw-bold">Cập Nhật</button>
-                            <a href="QLSP.php" class="btn btn-secondary">Hủy</a>
+                            <a href="../../Frontend/views/QLSP.php" class="btn btn-secondary">Hủy</a>
                         </form>
                     </div>
                 </div>
